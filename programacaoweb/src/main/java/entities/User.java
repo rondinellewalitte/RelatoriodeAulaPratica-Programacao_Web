@@ -1,23 +1,33 @@
 package entities;
 
-import java.util.Objects;
 import java.io.Serializable;
+import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
+
+@Entity
+@Table(name = "tb_user")
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
     private String email;
     private String telefone;
     private String password;
-
-
+    
     public User() {
     }
 
-    public User(int id, String nome, String email, String telefone, String password) {
+    public User(Long id, String nome, String email, String telefone, String password) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -26,12 +36,12 @@ public class User implements Serializable {
     }
 
 
-	public int getId() {
+	public Long getId() {
         return id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id = (long) id;
     }
 
     public String getNome() {
